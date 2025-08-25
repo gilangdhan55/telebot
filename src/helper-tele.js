@@ -8,21 +8,22 @@
  */
 function escapeMarkdown(text) {
   // Cek apakah ada sintaks formatting
-  const hasFormatting = /(\*.*\*|_.*_|`.*`)/.test(text);
+  // const hasFormatting = /(\*.*\*|_.*_|`.*`)/.test(text);
   
-  if (hasFormatting) {
-    // Jangan escape, biarkan user sengaja pakai format
-    return text;
-  }
+  // if (hasFormatting) {
+  //   // Jangan escape, biarkan user sengaja pakai format
+  //   return text;
+  // }
 
   // Kalau gak ada formatting, baru escape semua supaya aman
-  return text.replace(/[_*[\]()~`>#+\-=|{}]/g, ' ');
+  // return text.replace(/[_*[\]()~`>#+\-=|{}]/g, ' '); 
+  return text.replace(/([_*\[\]()~`>#+\-=|{}.!])/g, '\\$1');
 }
 
 async function sendTelegramMessage(bot, chatId, message, options = {}) {
   let newMessage = message;
 
-  if (options.parse_mode === 'Markdown') {
+  if (options.parse_mode === 'MarkdownV2') {
     newMessage = escapeMarkdown(message);
   }
   try {

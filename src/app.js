@@ -96,7 +96,7 @@ app.post('/send_message', async (req, res) => {
         return res.status(400).json({ error: 'chat_id dan message diperlukan' });
     } 
     
-    const result = await sendTelegramMessage(bot, chat_id, message, { parse_mode: 'Markdown' });
+    const result = await sendTelegramMessage(bot, chat_id, message, { parse_mode: 'MarkdownV2' });
    
     if (!result.success) {
         res.status(500).json({ error: 'Gagal mengirim pesan', details: result.error });
@@ -114,7 +114,7 @@ app.post('/group-cs-error', async (req, res) => {
         return res.status(400).json({ error: 'message diperlukan' });
     }
 
-    const result = await sendTelegramMessage(bot, chatId, message, { parse_mode: 'Markdown' });
+    const result = await sendTelegramMessage(bot, chatId, message, { parse_mode: 'MarkdownV2' });
    
     if (!result.success) {
         res.status(500).json({ error: 'Gagal mengirim pesan', details: result.error });
@@ -131,7 +131,7 @@ app.post('/group-cs-success', async (req, res) => {
     if(!message) {
         return res.status(400).json({ error: 'message diperlukan' });
     }
-    const result = await sendTelegramMessage(bot, chatId, message, { parse_mode: 'Markdown' });
+    const result = await sendTelegramMessage(bot, chatId, message, { parse_mode: 'MarkdownV2' });
    
     if (!result.success) {
         res.status(500).json({ error: 'Gagal mengirim pesan', details: result.error });
